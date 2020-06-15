@@ -5,12 +5,13 @@ Deep Learning Based Monaural Speech Dereverberation Models: Hope We Can Get Bett
 # It is just an idea to make an open source tool for the REVERB CHALLANGE dataset. And I will do it on both time-domain and frequency-domain. 
 
 ## The first network models contain (but noy just):
-*
+
 # Frequency-domain
 *DNN (Frames-level)
 *LSTM (Frames-level, utterance-level)
 *CNN (Frames-level, utterance-level, picture)
 *U-net
+
 # Time-domain
 *SEGAN
 *FCN
