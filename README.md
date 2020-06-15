@@ -1,8 +1,20 @@
 # speech-dereverberation-tools
+Deep Learning Based Monaural Speech Dereverberation Models: Hope We Can Get Better Performance of Dereverberation! 
 
-Deep Learning Based Monaural Speech Dereverberation Models: Hope We Can Get Better Performance of Dereverberation
+## What is it for? 
+# It is just an idea to make an open source tool for the REVERB CHALLANGE dataset. And I will do it on both time-domain and frequency-domain. 
 
-At the moment, it is just an idea to make an open source tool. 
+## The first network models contain (but noy just):
+*
+# Frequency-domain
+*DNN (Frames-level)
+*LSTM (Frames-level, utterance-level)
+*CNN (Frames-level, utterance-level, picture)
+*U-net
+# Time-domain
+*SEGAN
+*FCN
+
 
 I will do ti in a few years, but it does not work now!!!
 
