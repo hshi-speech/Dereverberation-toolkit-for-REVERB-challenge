@@ -6,13 +6,13 @@ Deep Learning Based Monaural Speech Dereverberation Models: Hope We Can Get Bett
 
 ## The first network models contain (but noy just):
 
-# Frequency-domain
+### Frequency-domain
 * DNN (Frames-level)
 * LSTM (Frames-level, utterance-level)
 * CNN (Frames-level, utterance-level, picture)
 * U-net
 
-# Time-domain
+### Time-domain
 * SEGAN
 * FCN
 
