@@ -1,4 +1,4 @@
-speech-dereverberation-tools  
+Speech-dereverberation-tools  
 ====
 
 #### This tool is for deep learning-based monaural speech dereverberation.   
