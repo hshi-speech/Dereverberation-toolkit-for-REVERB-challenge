@@ -4,18 +4,18 @@ function stoi_main(models, dirs, files, mKinds)
 		mkdir(['./matlab/STOI/MODELS/'  models '/' mKinds '/']);
 	end
 
-	fid_whole_Name = ['./stoi_results_latest.txt']
+	fid_whole_Name = ['./stoi_results_latest.txt'];
 	fid_whole =fopen(fid_whole_Name,'a+');
 
-	fprintf(fid_whole, '%s\n', char(mKinds))
+	fprintf(fid_whole, '%s\n', char(mKinds));
 
-	fileName = ['./matlab/STOI/MODELS/'  models '/'  char(mKinds)   '/' char(files) '.txt']
+	fileName = ['./matlab/STOI/MODELS/'  models '/'  char(mKinds)   '/' char(files) '.txt'];
 	fid=fopen(fileName,'w');
 
-	clnName = ['./matlab/STOI/MODELS/REVERB_et/' char(files) '_cln.txt']
+	clnName = ['./matlab/STOI/MODELS/REVERB_et/' char(files) '_cln.txt'];
 	lines = importdata(clnName);
 
-	[m, n] = size(lines)
+	[m, n] = size(lines);
 
 	sum = 0;
 

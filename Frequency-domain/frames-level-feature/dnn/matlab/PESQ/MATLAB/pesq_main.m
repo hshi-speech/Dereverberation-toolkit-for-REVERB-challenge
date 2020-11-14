@@ -4,7 +4,7 @@ function pesq_main(models, dirs, files, mKinds)
 		mkdir(['./matlab/PESQ/MODELS/'  models '/' mKinds '/']);
 	end
 
-	fid_whole_Name = ['./pesq_results_latest.txt']
+	fid_whole_Name = ['./pesq_results_latest.txt'];
 	fid_whole =fopen(fid_whole_Name,'a+');
 
 	fprintf(fid_whole, '%s\n', char(mKinds));
