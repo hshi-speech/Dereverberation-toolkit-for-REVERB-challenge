@@ -6,7 +6,7 @@ Speech-dereverberation-tools
 
 
 ## Models included in this tool:
-Frequency-domain  
+Frequency-domain
 - [x] DNN (Frames-level Loss)
 - [ ] LSTM (Frames-level Loss)
 - [ ] LSTM (Utterance-level Loss)
