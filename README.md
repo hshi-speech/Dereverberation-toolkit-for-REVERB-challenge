@@ -9,7 +9,7 @@ Speech-dereverberation-tools
     My e-mail: hshi.cca@gmail.com.
 ```
 
-## Models included in this tool:
+## Models included in this tool
 Frequency-domain
 - [x] DNN (Frames-level Loss)
 - [ ] LSTM (Frames-level Loss)
