@@ -1,4 +1,4 @@
-<font color=YellowGreen size=20><b>speech-dereverberation-tools</b></font> 
+<font color=YellowGreen size=40><b>speech-dereverberation-tools</b></font> 
 
 #### Deep Learning-based Monaural Speech Dereverberation Models: 
 #### We want to make `an open source tool for the REVERB CHALLANGE dataset`. 
