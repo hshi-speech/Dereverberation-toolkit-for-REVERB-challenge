@@ -1,8 +1,9 @@
 """
-Summary:  Train, inference and evaluate speech enhancement. 
+Summary:  Train, inference speech enhancement. 
 Author:   Qiuqiang Kong
 Created:  2017.12.22
-Modified: -
+Modified By: Hao Shi
+Modified Time: 2020.11.14
 """
 import numpy as np
 import os
@@ -170,10 +171,9 @@ def train(args):
             
             # Save model. 
             if iter % 5000 == 0:
-                ckpt_file_path = model_dir
-                if os.path.isdir(ckpt_file_path) is False:
-                      os.makedirs(ckpt_file_path)
-                # model_path = os.path.join(model_dir, "md_%diters.h5" % iter)
+                ckpt_file_path = os.path.join(model_dir, model_name)
+                # if os.path.isdir(model_dir) is False:
+                #       os.makedirs(model_dir)
                 tf.train.Saver().save(sess, ckpt_file_path, write_meta_graph=True)
                 print("Saved model to %s" % ckpt_file_path)
         
@@ -255,7 +255,7 @@ def inference(args):
         
             # Predict. 
             pred = sess.run([model.enhanced_outputs], feed_dict={model.x_noisy: mixed_x_3d}) # model.predict(mixed_x_3d)
-            pred = np.reshape(pred, (-1, 257))
+            pred = np.reshape(pred, (-1, int(n_window/2 + 1)))
             print(cnt, na)
         
             # Inverse scale. 
@@ -312,13 +312,6 @@ if __name__ == '__main__':
     parser_inference.add_argument('--visualize', action='store_true', default=False)
     parser_inference.add_argument('--tr_enh', type=str, default='test')
     parser_inference.add_argument('--model_name', type=str, default='dnn')
-
-
- 
-    parser_calculate_pesq = subparsers.add_parser('calculate_pesq')
-    parser_calculate_pesq.add_argument('--workspace', type=str, required=True)
-    parser_calculate_pesq.add_argument('--speech_dir', type=str, required=True)
-    parser_calculate_pesq.add_argument('--dir_name', type=str, required=True)
     
     args = parser.parse_args()
     
@@ -326,7 +319,6 @@ if __name__ == '__main__':
         train(args)
     elif args.mode == 'inference':
         inference(args)
-    elif args.mode == 'calculate_pesq':
-        calculate_pesq(args)
     else:
         raise Exception("Error!")
+
