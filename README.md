@@ -6,17 +6,19 @@ Speech-dereverberation-tools
 
 
 ## Models included in this tool:
-### Frequency-domain
+Frequency-domain  
 - [x] DNN (Frames-level Loss)
 - [ ] LSTM (Frames-level Loss)
 - [ ] LSTM (Utterance-level Loss)
-* CNN (Frames-level, utterance-level, picture)
-* U-net
-### Time-domain
-* SEGAN
-* FCN
+- [ ] CNN (Frames-level Loss)
+- [ ] CNN (Utterance-level Loss)
+- [ ] U-net (Frames-level Loss)
+- [ ] U-net (Utterance-level Loss)  
 
-*****
+Time-domain
+- [ ] SEGAN
+- [ ] FCN 
+- [ ] Conv-Tasnet 
 
 ## Future works
 `I will do ti in a few years, but it does not work now!!!`
