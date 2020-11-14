@@ -24,11 +24,16 @@ Time-domain
 - [ ] FCN 
 - [ ] Conv-Tasnet 
 
-## Future works
-`I will do ti in a few years, but it does not work now!!!`
-I will release the first egs in this month! If everything goes well!
+## Data description
+The data provided consists of a training set, a development test set, and a (final) evaluation test set.  
 
-*****
+SimData: utterances from the WSJCAM0 corpus [1], which are convolved by room impulse responses (RIRs) measured in different rooms. Recorded background noise is added to the reverberated test data at a fixed signal-to-noise ratio (SNR).  
+
+RealData: utterances from the MC-WSJ-AV corpus [2], which consists of utterances recorded in a noisy and reverberant room.  
+
+<b>References:<\b>  
+[1] T. Robinson, J. Fransen, D. Pye and J. Foote and S. Renals, "Wsjcam0: A British English Speech Corpus For Large Vocabulary Continuous Speech Recognition", In Proc. ICASSP 95, pp.81--84, 1995  
+[2] M. Lincoln, I. McCowan, J. Vepa and H.K. Maganti, "The multi-channel Wall Street Journal audio visual corpus (MC-WSJ-AV): Specification and initial experiments", IEEE Workshop on Automatic Speech Recognition and Understanding, 2005  
 
 ## Acknowledge
 ### I modified my codes based on below github:
