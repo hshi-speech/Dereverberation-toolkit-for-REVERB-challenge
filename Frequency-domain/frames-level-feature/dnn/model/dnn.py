@@ -12,6 +12,8 @@ class DNN(object):
 
     def __init__(self, sess, lr, batch_size, dim_in, dim_out, dropouts=0, training=False):
         self.sess = sess
+        self.lr = lr
+        self.batch_size = batch_size
         self.dim_in = dim_in
         self.dim_out = dim_out
         self.dropouts = dropouts	
