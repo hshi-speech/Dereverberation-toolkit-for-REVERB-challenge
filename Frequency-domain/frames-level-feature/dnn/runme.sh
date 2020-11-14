@@ -93,7 +93,7 @@ fi
 #################################    Step 3: Testing Data Processing    #####################################
 #############################################################################################################
 
-if [ $step -le 0 ]; then
+if [ $step -le 3 ]; then
 
 #   # Create mixture csv.
 #   python prepare_data.py create_mixture_csv --workspace=$WORKSPACE --speech_dir=$TE_SPEECH_DIR --noise_dir=$TE_NOISE_DIR --data_type=test
@@ -163,14 +163,14 @@ if [ $step -le 5 ]; then
     dirs=workspace/enh_wavs/test/
     mKinds=mapping
 
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room1';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room2';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room3';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room1';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room2';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room3';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_far';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_near';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_far';real_data='1';mKinds='$mKinds';evaluation;quit"
+    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_near';real_data='1';mKinds='$mKinds';evaluation;quit"
 
     # Calculate overall stats. 
     # python evaluate.py get_stats
