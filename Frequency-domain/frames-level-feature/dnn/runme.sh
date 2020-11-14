@@ -1,6 +1,6 @@
 #!/bin/bash
 
-step=1000
+step=1
 
 WORKSPACE="workspace"
 mkdir $WORKSPACE
@@ -44,7 +44,7 @@ TE8_NOISE_DIR="lists/REVERB_Real_et_near.lst"
 N_CONCAT=7
 N_HOP=3
 
-ITERATION=100000
+ITERATION=1000000
 
 model_name=dnn
 
@@ -52,7 +52,7 @@ model_name=dnn
 ################################    Step 1: Training  Data Processing    ####################################
 #############################################################################################################
 
-if [ $step -le 0 ]; then
+if [ $step -le 1 ]; then
 
   # Calculate mixture features.
   /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TR_SPEECH_DIR --noise_dir=$TR_NOISE_DIR --data_type=train --dir_name=REVERB_tr_cut
@@ -72,7 +72,7 @@ fi
 ######################################    Step 2: Training  Model    ########################################
 #############################################################################################################
 
-if [ $step -le 1000 ]; then
+if [ $step -le 2 ]; then
 
   # Train. 
   LEARNING_RATE=1e-4
@@ -134,7 +134,7 @@ fi
 #########################################    Step 4: Testing    #############################################
 #############################################################################################################
 
-if [ $step -le 0 ]; then
+if [ $step -le 4 ]; then
 
   # Inference, enhanced wavs will be created. 
   CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room1 --model_name=$model_name
@@ -152,7 +152,7 @@ fi
 #######################################    Step 5: Evaluation    ############################################
 #############################################################################################################
 
-if [ $step -le 0 ]; then
+if [ $step -le 5 ]; then
 
     # Calculate PESQ, SRMR and STOI of all enhanced speech. 
     # python evaluate.py calculate_pesq --workspace=$WORKSPACE --speech_dir=$TE_SPEECH_DIR --te_snr=$TE_SNR
@@ -176,41 +176,4 @@ if [ $step -le 0 ]; then
     # python evaluate.py get_stats
 
 fi
-
-#############################################################################################################
-##########################    Step 6: Enhancement Training Dataset Create    ################################
-#############################################################################################################
-
-if [ $step -le 0 ]; then
-
-  CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_tr_cut --tr_enh=train
-
-fi
-
-#############################################################################################################
-##########################    Step 7: Data Cut for training and test sets    ################################
-#############################################################################################################
-
-if [ $step -le 0 ]; then
-
-  # echo "Start Evaluation."
-  enh_dir=./workspace/enh_wavs/test/
-
-  models=mapping
-  save_dir_tr=/Work19/2018/shihao/REVERB_DATA/REVERB_cut_${models}/data/${models}/REVERB_tr_cut/
-  save_dir_tt_sim=/Work19/2018/shihao/REVERB_DATA/REVERB/REVERB_WSJCAM0_et/data/${models}/
-  save_dir_tt_real=/Work19/2018/shihao/REVERB_DATA/REVERB/MC_WSJ_AV_Eval/${models}/
-
-  /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tr';mKinds='REVERB_tr_cut';data_cut_train;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_far_room1';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_far_room2';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_far_room3';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_near_room1';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_near_room2';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_sim';mKinds='REVERB_et_near_room3';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_real';mKinds='REVERB_Real_et_far';data_cut_test;quit"
-  # /opt18/MATLAB/R2017b/bin/matlab -nodesktop -nosplash -r "enh_dir='$enh_dir';save_dir='$save_dir_tt_real';mKinds='REVERB_Real_et_near';data_cut_test;quit"
-
-fi
-
 

@@ -47,7 +47,7 @@ class DNN(object):
                 self.global_step = tf.Variable(0, trainable=False)
                 self.exp_learning_rate = tf.train.exponential_decay(self.lr,
                                                              global_step=self.global_step,
-                                                             decay_steps=500000, decay_rate=0.95, staircase=False)
+                                                             decay_steps=50000, decay_rate=0.95, staircase=False)
                 tf.summary.scalar('Learning rate', self.exp_learning_rate)
 				
             optimizer = tf.train.AdamOptimizer(self.lr)
