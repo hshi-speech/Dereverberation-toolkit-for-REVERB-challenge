@@ -1,6 +1,6 @@
 #!/bin/bash
 
-step=1
+step=1000
 
 WORKSPACE="workspace"
 mkdir $WORKSPACE
@@ -52,7 +52,7 @@ model_name=dnn
 ################################    Step 1: Training  Data Processing    ####################################
 #############################################################################################################
 
-if [ $step -le 1 ]; then
+if [ $step -le 0 ]; then
 
   # Calculate mixture features.
   /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TR_SPEECH_DIR --noise_dir=$TR_NOISE_DIR --data_type=train --dir_name=REVERB_tr_cut
@@ -72,13 +72,20 @@ fi
 ######################################    Step 2: Training  Model    ########################################
 #############################################################################################################
 
-if [ $step -le 2 ]; then
+if [ $step -le 1000 ]; then
 
   # Train. 
   LEARNING_RATE=1e-4
-
+  dropout=0.2
   
-  CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py train --dir_name=$model_name --workspace=$WORKSPACE --lr=$LEARNING_RATE --tr_dir_name=REVERB_tr_cut --va_dir_name=REVERB_dt --iteration=$ITERATION
+  CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py train \
+                         --model_name=$model_name \
+                         --workspace=$WORKSPACE \
+                         --lr=$LEARNING_RATE \
+                         --tr_dir_name=REVERB_tr_cut \
+                         --va_dir_name=REVERB_dt \
+                         --iteration=$ITERATION \
+                         --dropout=$dropout
 
 fi
 
@@ -86,7 +93,7 @@ fi
 #################################    Step 3: Testing Data Processing    #####################################
 #############################################################################################################
 
-if [ $step -le 3 ]; then
+if [ $step -le 0 ]; then
 
 #   # Create mixture csv.
 #   python prepare_data.py create_mixture_csv --workspace=$WORKSPACE --speech_dir=$TE_SPEECH_DIR --noise_dir=$TE_NOISE_DIR --data_type=test
@@ -127,7 +134,7 @@ fi
 #########################################    Step 4: Testing    #############################################
 #############################################################################################################
 
-if [ $step -le 4 ]; then
+if [ $step -le 0 ]; then
 
   # Inference, enhanced wavs will be created. 
   CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room1 --model_name=$model_name
@@ -145,7 +152,7 @@ fi
 #######################################    Step 5: Evaluation    ############################################
 #############################################################################################################
 
-if [ $step -le 5 ]; then
+if [ $step -le 0 ]; then
 
     # Calculate PESQ, SRMR and STOI of all enhanced speech. 
     # python evaluate.py calculate_pesq --workspace=$WORKSPACE --speech_dir=$TE_SPEECH_DIR --te_snr=$TE_SNR

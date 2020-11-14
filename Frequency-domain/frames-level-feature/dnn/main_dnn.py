@@ -25,10 +25,6 @@ from spectrogram_to_wave import recover_wav
 from model.dnn import DNN
 import tensorflow as tf
 
-# from keras.models import Sequential
-# from keras.layers import Dense, Dropout, Flatten
-# from keras.optimizers import Adam
-# from keras.models import load_model
 
 tf_config = tf.ConfigProto()
 tf_config.gpu_options.allow_growth = True
@@ -74,11 +70,12 @@ def train(args):
     """
     print(args)
     workspace = args.workspace
-    dir_name = args.dir_name
+    model_name = args.model_name
     lr = args.lr
     tr_dir_name = args.tr_dir_name
     va_dir_name = args.va_dir_name
     iter_training = args.iteration    
+    dropout = args.dropout
 
     # Load data. 
     t1 = time.time()
@@ -115,7 +112,7 @@ def train(args):
     n_hid = 2048
    
     with tf.Session() as sess:
-        model = DNN(sess, lr, batch_size, (tr_x.shape[1], tr_x.shape[2]), tr_y.shape[1])
+        model = DNN(sess, lr, batch_size, (n_concat, n_freq), n_freq, dropouts=dropout, training=True)
         model.build()
         sess.run( tf.global_variables_initializer())
         merge_op = tf.summary.merge_all()
@@ -126,10 +123,10 @@ def train(args):
         eval_tr_gen = DataGenerator(batch_size=batch_size, type='test', te_max_iter=100)
     
         # Directories for saving models and training stats
-        model_dir = os.path.join(workspace, "models", dir_name)
+        model_dir = os.path.join(workspace, "models", model_name)
         pp_data.create_folder(model_dir)
     
-        stats_dir = os.path.join(workspace, "training_stats", dir_name)
+        stats_dir = os.path.join(workspace, "training_stats", model_name)
         pp_data.create_folder(stats_dir)
     
         # Print loss before training. 
@@ -211,15 +208,11 @@ def inference(args):
 
     tr_enh = args.tr_enh
 
-    
     # Load model. 
     model_dir = os.path.join(workspace, "models", model_name)
     with tf.Session() as sess:
-        # print(model_dir + '/' + model_name + str(iter) + '.meta')
-        # model = tf.train.import_meta_graph(('/Work19/2018/shihao/sednn-reverb2clean/' + model_dir + '/' + model_name + str(iter) + '.meta'))
-        # model = saver.restore(sess, model_dir + '/' + model_name + str(iter) + '.ckpt')
 
-        model = DNN(sess, 0.1, 1, (7, 257), 257)
+        model = DNN(sess, 0.0, 1, (n_concat, int(n_window/2 + 1)), int(n_window/2 + 1))
         model.build()
         saver = tf.train.Saver()
 
@@ -304,11 +297,12 @@ if __name__ == '__main__':
 
     parser_train = subparsers.add_parser('train')
     parser_train.add_argument('--workspace', type=str, required=True)
-    parser_train.add_argument('--dir_name', type=str, required=True)
+    parser_train.add_argument('--model_name', type=str, required=True)
     parser_train.add_argument('--tr_dir_name', type=str, required=True)
     parser_train.add_argument('--va_dir_name', type=str, required=True)
     parser_train.add_argument('--lr', type=float, required=True)
     parser_train.add_argument('--iteration', type=int, required=True)
+    parser_train.add_argument('--dropout', type=float, required=True)
     
     parser_inference = subparsers.add_parser('inference')
     parser_inference.add_argument('--workspace', type=str, required=True)
