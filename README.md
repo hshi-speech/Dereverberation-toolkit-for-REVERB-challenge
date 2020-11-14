@@ -27,9 +27,9 @@ Time-domain
 ## Data description
 The data provided consists of a training set, a development test set, and a (final) evaluation test set.  
 
-SimData: utterances from the WSJCAM0 corpus [1], which are convolved by room impulse responses (RIRs) measured in different rooms. Recorded background noise is added to the reverberated test data at a fixed signal-to-noise ratio (SNR).  
++ SimData: utterances from the WSJCAM0 corpus [1], which are convolved by room impulse responses (RIRs) measured in different rooms. Recorded background noise is added to the reverberated test data at a fixed signal-to-noise ratio (SNR).  
 
-RealData: utterances from the MC-WSJ-AV corpus [2], which consists of utterances recorded in a noisy and reverberant room.  
++ RealData: utterances from the MC-WSJ-AV corpus [2], which consists of utterances recorded in a noisy and reverberant room.  
 
 <b>References:</b>  
 [1] T. Robinson, J. Fransen, D. Pye and J. Foote and S. Renals, "Wsjcam0: A British English Speech Corpus For Large Vocabulary Continuous Speech Recognition", In Proc. ICASSP 95, pp.81--84, 1995  
