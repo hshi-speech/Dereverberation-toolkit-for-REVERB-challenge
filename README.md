@@ -1,10 +1,10 @@
 Speech-dereverberation-tools  
 ====
 
-#### This tool is for deep learning-based monaural speech dereverberation.   
-#### We want to make `an open source tool for the REVERB CHALLANGE dataset`. 
-#### If you find any bugs in this tool, please contact me! Thank you!
-> `My e-mail: hshi.cca@gmail.com`.
+This tool is for deep learning-based monaural speech dereverberation.   
+We want to make `an open source tool for the REVERB CHALLANGE dataset`.  
+If you find any bugs in this tool, please contact me! Thank you!  
+My e-mail: `hshi.cca@gmail.com`.
 
 
 ## Models included in this tool:
