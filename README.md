@@ -1,9 +1,7 @@
 # speech-dereverberation-tools
-Deep Learning Based Monaural Speech Dereverberation Models: Hope We Can Get Better Performance of Dereverberation! 
 
-
-# What is it for? 
-#### It is just an idea to make `an open source tool for the REVERB CHALLANGE dataset`. And I will do it on both time-domain and frequency-domain. 
+#### Deep Learning-based Monaural Speech Dereverberation Models: 
+#### We want to make `an open source tool for the REVERB CHALLANGE dataset`. 
 
 
 ## The first network models contain (but noy just):
