@@ -5,7 +5,8 @@ Speech-dereverberation-tools
 #### We want to make `an open source tool for the REVERB CHALLANGE dataset`. 
 
 
-## The first network models contain (but noy just):
+## Models included in this tool:
+
 ### Frequency-domain
 * DNN (Frames-level)
 * LSTM (Frames-level, utterance-level)
