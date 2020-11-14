@@ -36,9 +36,9 @@ The data provided consists of a training set, a development test set, and a (fin
 [2] M. Lincoln, I. McCowan, J. Vepa and H.K. Maganti, "The multi-channel Wall Street Journal audio visual corpus (MC-WSJ-AV): Specification and initial experiments", IEEE Workshop on Automatic Speech Recognition and Understanding, 2005  
 
 ## Acknowledge
-### I modified my codes based on below github:
-* https://github.com/yongxuUSTC/sednn
-* https://github.com/snsun/pit-speech-separation
-* https://github.com/kaituoxu/Conv-TasNet
+ I modified my codes based on below github:
+> https://github.com/yongxuUSTC/sednn
+> https://github.com/snsun/pit-speech-separation
+> https://github.com/kaituoxu/Conv-TasNet
 
-*****
+
