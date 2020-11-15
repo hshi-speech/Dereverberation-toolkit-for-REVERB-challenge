@@ -12,17 +12,18 @@ Speech-dereverberation-tools
 ## Models included in this tool
 Frequency-domain
 - [x] DNN (Frames-level Loss, mapping)
+
+
+##Todo
+Frequency-domain
 - [ ] DNN (Frames-level Loss, masking)
 - [ ] DNN (Frames-level Loss, multi-target learning)
-
 - [ ] LSTM (Frames-level Loss, mapping)
 - [ ] LSTM (Frames-level Loss, masking)
 - [ ] LSTM (Frames-level Loss, multi-target learning)
-
 - [ ] LSTM (Utterance-level Loss, mapping)
 - [ ] LSTM (Utterance-level Loss, masking)
 - [ ] LSTM (Utterance-level Loss, multi-target learning)
-
 - [ ] CNN (Frames-level Loss)
 - [ ] CNN (Utterance-level Loss)
 - [ ] U-net (Frames-level Loss)
