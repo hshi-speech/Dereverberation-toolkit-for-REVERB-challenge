@@ -76,7 +76,7 @@ if [ $step -le 2 ]; then
 
   # Train. 
   LEARNING_RATE=1e-4
-  dropout=0.2
+  dropout=0.1
   
   CUDA_VISIBLE_DEVICES=0 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py train \
                          --model_name=$model_name \
