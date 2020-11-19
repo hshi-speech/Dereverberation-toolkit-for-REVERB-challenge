@@ -1,4 +1,4 @@
-Speech-dereverberation-tools  
+Dereverberation toolkit for the REVERB challenge  
 ====
 
 ```
@@ -12,13 +12,12 @@ Speech-dereverberation-tools
 ## Models included in this tool
 Frequency-domain
 - [x] DNN (Frames-level Loss, mapping)
-
+- [x] LSTM (Frames-level Loss, mapping)
 
 ## Todo
 Frequency-domain
 - [ ] DNN (Frames-level Loss, masking)
 - [ ] DNN (Frames-level Loss, multi-target learning)
-- [ ] LSTM (Frames-level Loss, mapping)
 - [ ] LSTM (Frames-level Loss, masking)
 - [ ] LSTM (Frames-level Loss, multi-target learning)
 - [ ] LSTM (Utterance-level Loss, mapping)
