@@ -22,6 +22,8 @@ Frequency-domain
 | DNN (mapping)     |     2.80   |    2.40   |    2.29   |    3.09    |    2.72    |    2.63    |
 | Bi-LSTM (mapping) |     2.89   |    2.47   |    2.36   |    3.17    |    2.82    |    2.70    |
 
+#### SRMR and STOI could be found in each egs
+
 ## Todo
 Frequency-domain
 - [ ] DNN (Frames-level Loss, masking)
