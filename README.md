@@ -17,7 +17,8 @@ Frequency-domain
 ## PESQ Results (simulated data)
 | System | Far room 1 | Far room 2 | Far room 3 | Near room 1 | Near room 2 | Near room 3 | 
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-| DNN (mapping) | 2.80 | 2.40 |  2.29   |    3.09    |    2.72    |    2.63    |
+| Noisy             |     2.59   |    1.99   |    1.87   |    3.11    |    2.39    |    2.27    |
+| DNN (mapping)     |     2.80   |    2.40   |    2.29   |    3.09    |    2.72    |    2.63    |
 | Bi-LSTM (mapping) |     2.89   |    2.47   |    2.36   |    3.17    |    2.82    |    2.70    |
 
 ## Todo
