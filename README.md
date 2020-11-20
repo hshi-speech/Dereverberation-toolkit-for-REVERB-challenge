@@ -14,7 +14,7 @@ Frequency-domain
 - [x] DNN (Frames-level Loss, mapping)
 - [x] LSTM (Frames-level Loss, mapping)
 
-## Evaluation measures
+## Evaluation measures on test set
 #### PESQ Results
 | System | Far room 1 | Far room 2 | Far room 3 | Near room 1 | Near room 2 | Near room 3 | 
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -23,7 +23,7 @@ Frequency-domain
 | Bi-LSTM (mapping) |     2.89   |    2.47   |    2.36   |    3.17    |    2.82    |    2.70    |
 
 #### SRMR Results
-| System | Far room 1 | Far room 2 | Far room 3 | Near room 1 | Near room 2 | Near room 3 | real far | real near |
+| System | Far room 1 | Far room 2 | Far room 3 | Near room 1 | Near room 2 | Near room 3 | Real far | Real near |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | Noisy             |    4.59   |    2.97   |    2.73   |    4.50    |    3.74    |    3.57    |   3.19   |   3.17    |
 | DNN (mapping)     |    5.62   |    4.72   |    4.03   |    5.88    |    5.57    |    5.34    |   5.58   |   5.35    |
