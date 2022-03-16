@@ -55,16 +55,16 @@ model_name=bilstm
 if [ $step -le 1 ]; then
 
   # Calculate mixture features.
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TR_SPEECH_DIR --noise_dir=$TR_NOISE_DIR --data_type=train --dir_name=REVERB_tr_cut
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$VA_SPEECH_DIR --noise_dir=$VA_NOISE_DIR --data_type=validation --dir_name=REVERB_dt
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TR_SPEECH_DIR --noise_dir=$TR_NOISE_DIR --data_type=train --dir_name=REVERB_tr_cut
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$VA_SPEECH_DIR --noise_dir=$VA_NOISE_DIR --data_type=validation --dir_name=REVERB_dt
 
   # Pack features.
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=train --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_tr_cut
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=validation --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_dt
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=train --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_tr_cut
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=validation --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_dt
 
   # Compute scaler. 
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=train --dir_name=REVERB_tr_cut
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=validation --dir_name=REVERB_dt
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=train --dir_name=REVERB_tr_cut
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=validation --dir_name=REVERB_dt
 
 fi
 
@@ -78,7 +78,7 @@ if [ $step -le 2 ]; then
   LEARNING_RATE=1e-4
   dropout=0.8
   
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py train \
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py train \
                          --model_name=$model_name \
                          --workspace=$WORKSPACE \
                          --lr=$LEARNING_RATE \
@@ -99,34 +99,34 @@ if [ $step -le 3 ]; then
 #   python prepare_data.py create_mixture_csv --workspace=$WORKSPACE --speech_dir=$TE_SPEECH_DIR --noise_dir=$TE_NOISE_DIR --data_type=test
 
   # Calculate mixture features.
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE1_SPEECH_DIR --noise_dir=$TE1_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE2_SPEECH_DIR --noise_dir=$TE2_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE3_SPEECH_DIR --noise_dir=$TE3_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE4_SPEECH_DIR --noise_dir=$TE4_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE5_SPEECH_DIR --noise_dir=$TE5_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE6_SPEECH_DIR --noise_dir=$TE6_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE7_SPEECH_DIR --noise_dir=$TE7_NOISE_DIR --data_type=test --dir_name=REVERB_Real_et_far
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE8_SPEECH_DIR --noise_dir=$TE8_NOISE_DIR --data_type=test --dir_name=REVERB_Real_et_near
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE1_SPEECH_DIR --noise_dir=$TE1_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room1
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE2_SPEECH_DIR --noise_dir=$TE2_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room2
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE3_SPEECH_DIR --noise_dir=$TE3_NOISE_DIR --data_type=test --dir_name=REVERB_et_far_room3
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE4_SPEECH_DIR --noise_dir=$TE4_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room1
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE5_SPEECH_DIR --noise_dir=$TE5_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room2
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE6_SPEECH_DIR --noise_dir=$TE6_NOISE_DIR --data_type=test --dir_name=REVERB_et_near_room3
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE7_SPEECH_DIR --noise_dir=$TE7_NOISE_DIR --data_type=test --dir_name=REVERB_Real_et_far
+  python prepare_data.py calculate_mixture_features --workspace=$WORKSPACE --speech_dir=$TE8_SPEECH_DIR --noise_dir=$TE8_NOISE_DIR --data_type=test --dir_name=REVERB_Real_et_near
 
   # Pack features. 
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_Real_et_far
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_Real_et_near
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room1
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room2
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_far_room3
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room1
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room2
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_et_near_room3
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_Real_et_far
+  python prepare_data.py pack_features --workspace=$WORKSPACE --data_type=test --n_concat=$N_CONCAT --n_hop=$N_HOP --dir_name=REVERB_Real_et_near
   
   # Compute scaler. 
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room1
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room2
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room3
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_Real_et_far
-  /Work19/2018/shihao/sednn-env/bin/python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_Real_et_near
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room1
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room2
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_far_room3
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room1
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room2
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_et_near_room3
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_Real_et_far
+  python prepare_data.py compute_scaler --workspace=$WORKSPACE --data_type=test --dir_name=REVERB_Real_et_near
 
 fi
 
@@ -137,14 +137,14 @@ fi
 if [ $step -le 4 ]; then
 
   # Inference, enhanced wavs will be created. 
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room1 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room2 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room3 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room1 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room2 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room3 --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_Real_et_far --model_name=$model_name
-  CUDA_VISIBLE_DEVICES=2 /Work19/2018/shihao/sednn-env/bin/python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_Real_et_near --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room1 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room2 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_far_room3 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room1 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room2 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_et_near_room3 --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_Real_et_far --model_name=$model_name
+  CUDA_VISIBLE_DEVICES=2 python main_dnn.py inference --workspace=$WORKSPACE --n_concat=$N_CONCAT --iteration=$ITERATION --dir_name=REVERB_Real_et_near --model_name=$model_name
 
 fi
 
@@ -163,14 +163,14 @@ if [ $step -le 5 ]; then
     dirs=workspace/enh_wavs/test/
     mKinds=mapping
 
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_far';real_data='1';mKinds='$mKinds';evaluation;quit"
-    /opt18/matlab_2015b/bin/matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_near';real_data='1';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_far_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room1';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room2';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_et_near_room3';real_data='0';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_far';real_data='1';mKinds='$mKinds';evaluation;quit"
+    matlab -nodesktop -nosplash -r "models='$models';dirs='$dirs';files='REVERB_Real_et_near';real_data='1';mKinds='$mKinds';evaluation;quit"
 
     # Calculate overall stats. 
     # python evaluate.py get_stats
